@@ -144,7 +144,7 @@ public class RegistroDeUsuarios extends javax.swing.JFrame {
                                 .addComponent(btn_eliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

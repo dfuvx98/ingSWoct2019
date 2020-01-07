@@ -1,5 +1,5 @@
 package proyect_clases;
-
+// Comentario añadido mpabad
 public class Boleto {
     
     private int     numero_boleto;

@@ -416,7 +416,7 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
 
     private void btn_p_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_guardarActionPerformed
         // TODO add your handling code here:
-
+        
         String cedulaP_b = txt_venta_busca_cedula.getText();
         String nombreP_b = txt_venta_nombre.getText();
         String apellidoP_b = txt_venta_apellido.getText();

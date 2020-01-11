@@ -173,12 +173,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edad Pasajero:"/>
+            <Property name="text" type="java.lang.String" value="Categor&#xed;a Pasajero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Categoria  Pasajero:"/>
+            <Property name="text" type="java.lang.String" value="Edad   Pasajero:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_venta_nombre">

@@ -81,9 +81,9 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
 
         jLabel2.setText("Apellido Pasajero:");
 
-        jLabel4.setText("Edad Pasajero:");
+        jLabel4.setText("Categoría Pasajero");
 
-        jLabel5.setText("Categoria  Pasajero:");
+        jLabel5.setText("Edad   Pasajero:");
 
         btn_buscarr_pasajero.setText("Buscar");
         btn_buscarr_pasajero.addActionListener(new java.awt.event.ActionListener() {

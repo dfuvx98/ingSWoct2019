@@ -32,7 +32,7 @@ public class MetodoPasajero {
             pw.println("|"+pasajero.getEdad_pasajero());
             pw.close();
         } catch (IOException e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
         }
     }
     
@@ -62,7 +62,7 @@ public class MetodoPasajero {
                 mdlTablaP.addRow(x);
             }
         }catch (Exception e){
-        JOptionPane.showMessageDialog(null, e);
+        JOptionPane.showMessageDialog(null, "Archivo no encontrado");
         }
         return mdlTablaP;
     }
@@ -88,7 +88,7 @@ public class MetodoPasajero {
             }br.close();
             fr.close();
         }catch (Exception e){
-        JOptionPane.showMessageDialog(null, e);
+        JOptionPane.showMessageDialog(null, "Archivo no encontrado");
         }       
         return vPrincipal;
     }

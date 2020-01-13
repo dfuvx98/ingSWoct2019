@@ -3,16 +3,18 @@ package proyect_gui;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import proyect_clases.Rutas;
 import proyect_metodos.MetodoRutas;
+import proyect_metodos.Metodos;
 
 public class GUI_RegistroRutas extends javax.swing.JFrame {
 
     Rutas ruta = new Rutas();
-    MetodoRutas metodos = new MetodoRutas();
+    MetodoRutas metodosR = new MetodoRutas();
     DefaultTableModel mdlTablaR;
     Vector vCabeceras = new Vector();
-    
+    Metodos metodos = new Metodos();
     public GUI_RegistroRutas() {
         initComponents();
         
@@ -25,7 +27,7 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
         vCabeceras.addElement("FECHA");
         mdlTablaR = new DefaultTableModel(vCabeceras,0);
         table_rutas.setModel(mdlTablaR);
-        table_rutas.setModel(metodos.listaRutas());
+        table_rutas.setModel(metodosR.listaRutas());
         
     }
     @SuppressWarnings("unchecked")
@@ -294,27 +296,53 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
 
     private void btn_r_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_r_guardarActionPerformed
         // TODO add your handling code here:
-
+        int bandera =1;
         mdlTablaR = new DefaultTableModel();
-
-        int id_r = Integer.parseInt(txt_r_id.getText());
+        int id_r=0;
+        String costo_r= "";
+        String fecha_r="";
+        if(metodos.EsNumero(txt_r_id.getText())){
+            id_r = Integer.parseInt(txt_r_id.getText());
+            ruta.setId_Ruta(id_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese valores numérico para ID");
+            bandera=0;
+        }
         String nombre_r = txt_r_nombre.getText();
         String origen_r = txt_r_origen.getText();
         String destino_r = txt_r_destino.getText();
-        String costo_r = txt_r_costo.getText();
-        String hora_r = txt_r_hora.getText();
-        String fecha_r = txt_r_fecha.getText();
-        
-        ruta.setId_Ruta(id_r);
+        if(metodos.EsNumero(txt_r_costo.getText())){
+             costo_r = txt_r_costo.getText();
+             ruta.setCosto_Ruta(costo_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese valor númerico de costo");
+            bandera=0;
+        }
+        if(metodos.EsHora(txt_r_hora.getText())){
+            String hora_r = txt_r_hora.getText();
+            ruta.setHora_Ruta(hora_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese hora correcta en formato HH:mm");
+            bandera=0;
+        }
+        if(metodos.EsFecha(txt_r_fecha.getText())){
+            fecha_r = txt_r_fecha.getText();    
+            ruta.setFecha_Ruta(fecha_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese fecha en formato DD/mm/yyyy");
+            bandera=0;
+        }        
         ruta.setNombre_Ruta(nombre_r);
         ruta.setOrigen_Ruta(origen_r);
         ruta.setDestino_Ruta(destino_r);
-        ruta.setCosto_Ruta(costo_r);
-        ruta.setHora_Ruta(hora_r);
-        ruta.setFecha_Ruta(fecha_r);
-        metodos.guardarRutas(ruta);
-        metodos.guardarArchivoRutas(ruta);
-        table_rutas.setModel(metodos.listaRutas());
+        
+        
+        if(bandera==1){
+            table_rutas.setModel(metodosR.listaRutas());
+            metodosR.guardarRutas(ruta);
+            metodosR.guardarArchivoRutas(ruta);
+        }
+        
     }//GEN-LAST:event_btn_r_guardarActionPerformed
 
     private void btn_r_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_r_salirActionPerformed
@@ -341,7 +369,7 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
 
     private void btn_r_actializarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_r_actializarActionPerformed
         // Carga los datos del archivo de texto con la base de datos de pasajeros:
-        table_rutas.setModel(metodos.listaRutas());
+        table_rutas.setModel(metodosR.listaRutas());
     }//GEN-LAST:event_btn_r_actializarActionPerformed
 
     /**

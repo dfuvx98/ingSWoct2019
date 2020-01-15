@@ -12,13 +12,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyect_metodos.MetodoPasajero;
 import proyect_clases.Pasajero;
+import proyect_metodos.Metodos;
 
 public class GUI_RegistroPasajeros extends javax.swing.JFrame {
 
     Pasajero pasajero = new Pasajero();
-    MetodoPasajero metodos = new MetodoPasajero();
+    MetodoPasajero metodosR = new MetodoPasajero();
     DefaultTableModel mdlTablaP;
     Vector vCabeceras = new Vector();
+    Metodos metodos = new Metodos();
     
     public GUI_RegistroPasajeros() {
         initComponents();
@@ -30,7 +32,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         vCabeceras.addElement("EDAD");
         mdlTablaP = new DefaultTableModel(vCabeceras,0);
         table_pasajero.setModel(mdlTablaP);
-        table_pasajero.setModel(metodos.listaPasajero());
+        table_pasajero.setModel(metodosR.listaPasajero());
     }
    
     @SuppressWarnings("unchecked")
@@ -258,9 +260,9 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         pasajero.setTipo_pasajero(pasajero_p);
         pasajero.setCedula_pasajero(cedula_p);
         pasajero.setEdad_pasajero(edad_p);
-        metodos.guardarPasajero(pasajero);
-        metodos.guardarArchivoPasajero(pasajero);
-        table_pasajero.setModel(metodos.listaPasajero());
+        metodosR.guardarPasajero(pasajero);
+        metodosR.guardarArchivoPasajero(pasajero);
+        table_pasajero.setModel(metodosR.listaPasajero());
     }//GEN-LAST:event_btn_p_guardarActionPerformed
 
     private void btn_p_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_salirActionPerformed
@@ -271,7 +273,9 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_p_salirActionPerformed
 
     private void btn_p_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_eliminarActionPerformed
-              // Boton eliminar pasajeros en tabla:
+        String cedula_p = (txt_p_cedula.getText());
+    
+        // Boton eliminar pasajeros en tabla:
     }//GEN-LAST:event_btn_p_eliminarActionPerformed
    
     private void btn_p_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_nuevoActionPerformed

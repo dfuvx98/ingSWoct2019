@@ -64,6 +64,8 @@ public class Metodos {
         }
         return mdlTabla;
     }
+    
+    
 
     public boolean EsNumero(String Str){
         try{

@@ -93,14 +93,118 @@ public class MetodoPasajero {
         return vPrincipal;
     }
     
-    public void EditaPasajero(){
-    
-        //FALTA
+    public Vector EditaPasajero(Pasajero pasajero) {
+        try {
+            String cedulaP = Integer.toString(pasajero.getCedula_pasajero());
+            String linea;
+
+            File archivo = new File(".\\pasajero.txt");
+            BufferedReader bReader = new BufferedReader(new FileReader(archivo));
+
+            FileWriter fw = new FileWriter(".\\pasajero.txt", true);
+            BufferedWriter bWriter = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bWriter);
+            
+            //archivo temporal
+            File temparchivo = new File(".\\temp-pasajero.txt");
+            FileWriter tempfw = new FileWriter(".\\temp-pasajero.txt");
+            BufferedWriter tempbWriter = new BufferedWriter(tempfw);
+            PrintWriter temppw = new PrintWriter(tempbWriter);
+
+            while ((linea = bReader.readLine()) != null) {
+                System.out.println(linea);
+                StringTokenizer dato = new StringTokenizer(linea, "|");
+                Vector x = new Vector();
+                while (dato.hasMoreTokens()) {
+                    x.addElement(dato.nextToken());
+                }
+                String a = x.elementAt(3).toString();
+                if (a.equals(cedulaP)) {
+                    temppw.print(pasajero.getNombre_pasajero());
+                    temppw.print("|" + pasajero.getApellido_pasajero());
+                    temppw.print("|" + pasajero.getTipo_pasajero());
+                    temppw.print("|" + pasajero.getCedula_pasajero());
+                    temppw.println("|" + pasajero.getEdad_pasajero());
+                    continue;
+                }
+                temppw.println(linea);
+            }
+            
+            bWriter.close();
+            pw.close();
+            bReader.close();
+            tempbWriter.close();
+            temppw.close();
+            fw.close();
+            
+            //eliminar archivo y renombrar archivo temporal
+            archivo.delete();
+            boolean correcto = temparchivo.renameTo(archivo);
+            if (correcto) {
+                System.out.println("done!");
+            } else {
+                System.out.println("nope");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+        }
+        return vPrincipal;
     }
     
-    public void EliminarPasajero(){
-    
-        //FALTA
+    public Vector EliminarPasajero(String CedulaP) {
+
+        try {
+            String cedulaP = CedulaP;
+            String linea;
+
+            File archivo = new File(".\\pasajero.txt");
+            BufferedReader bReader = new BufferedReader(new FileReader(archivo));
+
+            FileWriter fw = new FileWriter(".\\pasajero.txt", true);
+            BufferedWriter bWriter = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bWriter);
+
+            //archivo temporal
+            File temparchivo = new File(".\\temp-pasajero.txt");
+            FileWriter tempfw = new FileWriter(".\\temp-pasajero.txt");
+            BufferedWriter tempbWriter = new BufferedWriter(tempfw);
+            PrintWriter temppw = new PrintWriter(tempbWriter);
+
+            while ((linea = bReader.readLine()) != null) {
+                StringTokenizer dato = new StringTokenizer(linea, "|");
+                Vector x = new Vector();
+                while (dato.hasMoreTokens()) {
+                    x.addElement(dato.nextToken());
+                }
+                String a = x.elementAt(3).toString();
+                if (a.equals(cedulaP)) {
+                    continue;
+                }
+                temppw.println(linea);
+            }
+            
+            bWriter.close();
+            pw.close();
+            bReader.close();
+            tempbWriter.close();
+            temppw.close();
+            fw.close();
+            
+            //eliminar archivo y renombrar archivo temporal
+            archivo.delete();
+            boolean correcto = temparchivo.renameTo(archivo);
+            if (correcto) {
+                System.out.println("done!");
+            } else {
+                System.out.println("nope");
+            }
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+        }
+        return vPrincipal;
+
     }
-    
 }

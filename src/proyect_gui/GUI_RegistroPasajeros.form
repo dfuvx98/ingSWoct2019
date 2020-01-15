@@ -56,7 +56,17 @@
                                   <Component id="txt_p_edad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="txt_p_pasajero" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="btn_p_guardar" min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btn_p_editar" min="-2" pref="87" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -67,21 +77,18 @@
                                   <Component id="txt_p_apellido" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="btn_p_guardar" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="btn_p_editar" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btn_p_eliminar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btn_p_actializar" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btn_p_salir" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,6 +126,7 @@
                   <Component id="btn_p_nuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_p_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_p_actializar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_p_eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="201" max="-2" attributes="0"/>
@@ -261,6 +269,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="DATOS DEL PASAJERO:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_p_eliminar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_p_eliminarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

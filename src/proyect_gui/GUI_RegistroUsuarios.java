@@ -319,13 +319,27 @@ public class GUI_RegistroUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_u_nuevoActionPerformed
 
     private void btn_u_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_u_eliminarActionPerformed
-       
-
-        
+         String id = (txt_u_id_busca.getText());
+        metodos.EliminarUsuario(id);
+        table_usuario.setModel(metodos.listaUsuario());
     }//GEN-LAST:event_btn_u_eliminarActionPerformed
 
     private void btn_u_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_u_editarActionPerformed
-       
+       mdlTablaU = new DefaultTableModel();
+
+        int id_u = Integer.parseInt(txt_u_id.getText());
+        String nombre_u = txt_u_nombre.getText();
+        String apellido_u = txt_u_apellido.getText();
+        String user_u = txt_u_user.getText();
+        String password_u = txt_u_password.getText();
+        usuario.setId_usuario(id_u);
+        usuario.setNombre_usuario(nombre_u);
+        usuario.setApellido_usuario(apellido_u);
+        usuario.setUsarname(user_u);
+        usuario.setPassword(password_u);
+        metodos.EditarUsuario(usuario);
+        table_usuario.setModel(metodos.listaUsuario());
+
         
         
     }//GEN-LAST:event_btn_u_editarActionPerformed

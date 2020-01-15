@@ -57,6 +57,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         btn_p_editar = new javax.swing.JButton();
         btn_p_actializar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btn_p_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +129,13 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
 
         jLabel6.setText("DATOS DEL PASAJERO:");
 
+        btn_p_eliminar.setText("Eliminar");
+        btn_p_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_p_eliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,8 +165,15 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_p_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_p_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_p_pasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(85, 85, 85)
+                                    .addComponent(txt_p_pasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_p_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_p_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
@@ -166,17 +181,14 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_p_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_p_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_p_eliminar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_p_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(btn_p_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_p_actializar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(btn_p_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_p_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +219,8 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
                     .addComponent(btn_p_salir)
                     .addComponent(btn_p_nuevo)
                     .addComponent(btn_p_editar)
-                    .addComponent(btn_p_actializar))
+                    .addComponent(btn_p_actializar)
+                    .addComponent(btn_p_eliminar))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -309,10 +322,18 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         // Carga los datos del archivo de texto con la base de datos de pasajeros:
         table_pasajero.setModel(metodos.listaPasajero());
     }//GEN-LAST:event_btn_p_actializarActionPerformed
+
+    private void btn_p_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_eliminarActionPerformed
+        // TODO add your handling code here:
+        String cedula_p = (txt_p_cedula.getText());
+        metodosR.EliminarPasajero(cedula_p);
+        table_pasajero.setModel(metodos.listaPasajero());
+    }//GEN-LAST:event_btn_p_eliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_p_actializar;
     private javax.swing.JButton btn_p_editar;
+    private javax.swing.JButton btn_p_eliminar;
     private javax.swing.JButton btn_p_guardar;
     private javax.swing.JButton btn_p_nuevo;
     private javax.swing.JButton btn_p_salir;

@@ -32,6 +32,7 @@ public class MetodoUsuario {
             pw.print("|"+usuario.getApellido_usuario());
             pw.print("|"+usuario.getUsarname());
             pw.println("|"+usuario.getPassword());
+            bw.close();
             pw.close();
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, e);
@@ -59,6 +60,7 @@ public class MetodoUsuario {
                 }
                 mdlTablaU.addRow(x);
             }
+            br.close();
         }catch (Exception e){
         JOptionPane.showMessageDialog(null, e);
         }
@@ -89,15 +91,120 @@ public class MetodoUsuario {
         return v1;
     }
     
-      public void EditarRutas() {
-           
-        //FALTA
+     public Vector EditarUsuario(Usuario usuario) {
+        try {
+            String id = Integer.toString(usuario.getId_usuario());
+            String linea;
+
+            File archivo = new File(".\\usuario.txt");
+            BufferedReader bReader = new BufferedReader(new FileReader(archivo));
+
+            FileWriter fw = new FileWriter(".\\usuario.txt", true);
+            BufferedWriter bWriter = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bWriter);
+
+            //archivo temporal
+            File temparchivo = new File(".\\temp-usuario.txt");
+            FileWriter tempfw = new FileWriter(".\\temp-usuario.txt");
+            BufferedWriter tempbWriter = new BufferedWriter(tempfw);
+            PrintWriter temppw = new PrintWriter(tempbWriter);
+
+            while ((linea = bReader.readLine()) != null) {
+                System.out.println(linea);
+                StringTokenizer dato = new StringTokenizer(linea, "|");
+                Vector x = new Vector();
+                while (dato.hasMoreTokens()) {
+                    x.addElement(dato.nextToken());
+                }
+                String a = x.elementAt(0).toString();
+                if (a.equals(id)) {
+                    temppw.print(usuario.getId_usuario());
+                    temppw.print("|" + usuario.getNombre_usuario());
+                    temppw.print("|" + usuario.getApellido_usuario());
+                    temppw.print("|" + usuario.getUsarname());
+                    temppw.println("|" + usuario.getPassword());
+                    continue;
+                }
+                temppw.println(linea);
+            }
+
+            bWriter.close();
+            pw.close();
+            bReader.close();
+            tempbWriter.close();
+            temppw.close();
+            fw.close();
+
+            //eliminar archivo y renombrar archivo temporal
+            archivo.delete();
+            boolean correcto = temparchivo.renameTo(archivo);
+            if (correcto) {
+                System.out.println("done!");
+            } else {
+                System.out.println("nope");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+        }
+        return v1;
     }
     
     
-    public void EliminarRutas() {
-           
-        //FALTA
+    public Vector EliminarUsuario(String Id) {
+
+        try {
+            String id = Id;
+            String linea;
+
+            File archivo = new File(".\\usuario.txt");
+            BufferedReader bReader = new BufferedReader(new FileReader(archivo));
+
+            FileWriter fw = new FileWriter(".\\usuario.txt", true);
+            BufferedWriter bWriter = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bWriter);
+
+            //archivo temporal
+            File temparchivo = new File(".\\temp-usuario.txt");
+            FileWriter tempfw = new FileWriter(".\\temp-usuario.txt");
+            BufferedWriter tempbWriter = new BufferedWriter(tempfw);
+            PrintWriter temppw = new PrintWriter(tempbWriter);
+
+            while ((linea = bReader.readLine()) != null) {
+                StringTokenizer dato = new StringTokenizer(linea, "|");
+                Vector x = new Vector();
+                while (dato.hasMoreTokens()) {
+                    x.addElement(dato.nextToken());
+                }
+                String a = x.elementAt(0).toString();
+                if (a.equals(id)) {
+                    continue;
+                }
+                temppw.println(linea);
+            }
+            
+            bWriter.close();
+            pw.close();
+            bReader.close();
+            tempbWriter.close();
+            temppw.close();
+            fw.close();
+            
+            //eliminar archivo y renombrar archivo temporal
+            archivo.delete();
+            boolean correcto = temparchivo.renameTo(archivo);
+            if (correcto) {
+                System.out.println("done!");
+            } else {
+                System.out.println("nope");
+            }
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+        }
+        return v1;
+
     }
   
 }

@@ -71,7 +71,7 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="btn_p_guardar" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="btn_p_eliminar" min="-2" pref="87" max="-2" attributes="0"/>
+                              <Component id="btn_p_editar" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btn_p_actializar" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   <Component id="btn_p_guardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_p_salir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_p_nuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_p_eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_p_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_p_actializar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -241,12 +241,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_p_nuevoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_p_eliminar">
+    <Component class="javax.swing.JButton" name="btn_p_editar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_p_eliminarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_p_editarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_p_actializar">

@@ -54,7 +54,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         btn_p_guardar = new javax.swing.JButton();
         btn_p_salir = new javax.swing.JButton();
         btn_p_nuevo = new javax.swing.JButton();
-        btn_p_eliminar = new javax.swing.JButton();
+        btn_p_editar = new javax.swing.JButton();
         btn_p_actializar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -112,10 +112,10 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
             }
         });
 
-        btn_p_eliminar.setText("Editar");
-        btn_p_eliminar.addActionListener(new java.awt.event.ActionListener() {
+        btn_p_editar.setText("Editar");
+        btn_p_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_p_eliminarActionPerformed(evt);
+                btn_p_editarActionPerformed(evt);
             }
         });
 
@@ -170,7 +170,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_p_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(btn_p_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_p_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_p_actializar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
@@ -206,7 +206,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
                     .addComponent(btn_p_guardar)
                     .addComponent(btn_p_salir)
                     .addComponent(btn_p_nuevo)
-                    .addComponent(btn_p_eliminar)
+                    .addComponent(btn_p_editar)
                     .addComponent(btn_p_actializar))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,11 +272,29 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn_p_salirActionPerformed
 
-    private void btn_p_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_eliminarActionPerformed
-        String cedula_p = (txt_p_cedula.getText());
+    private void btn_p_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_editarActionPerformed
+         // Editar registro:
+        
+        mdlTablaP = new DefaultTableModel();
+      //JOptionPane.showMessageDialog(null, "Archivo");
+        String nombre_p = txt_p_nombre.getText();
+        String apellido_p = txt_p_apellido.getText();
+        String pasajero_p = txt_p_pasajero.getText();
+        int cedula_p = Integer.parseInt(txt_p_cedula.getText());
+        int edad_p = Integer.parseInt(txt_p_edad.getText());
+        
+        if( nombre_p.isEmpty()){JOptionPane.showMessageDialog(null, "Ingrese Nombre");}
+        
+        pasajero.setNombre_pasajero(nombre_p);
+        pasajero.setApellido_pasajero(apellido_p);
+        pasajero.setTipo_pasajero(pasajero_p);
+        pasajero.setCedula_pasajero(cedula_p);
+        pasajero.setEdad_pasajero(edad_p);
+        metodosR.EditaPasajero(pasajero);
+        table_pasajero.setModel(metodos.listaPasajero());
     
         // Boton eliminar pasajeros en tabla:
-    }//GEN-LAST:event_btn_p_eliminarActionPerformed
+    }//GEN-LAST:event_btn_p_editarActionPerformed
    
     private void btn_p_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_nuevoActionPerformed
         // Limpia los Jtext:
@@ -294,7 +312,7 @@ public class GUI_RegistroPasajeros extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_p_actializar;
-    private javax.swing.JButton btn_p_eliminar;
+    private javax.swing.JButton btn_p_editar;
     private javax.swing.JButton btn_p_guardar;
     private javax.swing.JButton btn_p_nuevo;
     private javax.swing.JButton btn_p_salir;

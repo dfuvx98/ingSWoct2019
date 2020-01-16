@@ -5,17 +5,34 @@
  */
 package proyect_gui;
 
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import proyect_metodos.MetodoBoleto;
+
 /**
  *
  * @author HackWhite
  */
 public class GUI_ReporteVentas extends javax.swing.JFrame {
 
+     private static MetodoBoleto metodosBoleto = new MetodoBoleto();
+
+    private static DefaultTableModel mdlTablaBoletos;
     /**
      * Creates new form GUI_ReporteVentas
      */
     public GUI_ReporteVentas() {
         initComponents();
+        Vector vCabeceras = new Vector();
+        vCabeceras.addElement("BOLETO");
+        vCabeceras.addElement("PASAJERO");
+        vCabeceras.addElement("RUTA");
+        vCabeceras.addElement("COSTO");
+        vCabeceras.addElement("FECHA");
+        vCabeceras.addElement("HORA");
+        mdlTablaBoletos = new DefaultTableModel(vCabeceras, 0);
+        table_boletos.setModel(mdlTablaBoletos);
+        table_boletos.setModel(metodosBoleto.listaBoletos());
     }
 
     /**
@@ -28,6 +45,8 @@ public class GUI_ReporteVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_repVenta_salir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_boletos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,19 +57,46 @@ public class GUI_ReporteVentas extends javax.swing.JFrame {
             }
         });
 
+        table_boletos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "BOLETO", "PASAJERO", "RUTA", "COSTO", "FECHA", "HORA"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_boletos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(281, Short.MAX_VALUE)
-                .addComponent(btn_repVenta_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 464, Short.MAX_VALUE)
+                        .addComponent(btn_repVenta_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addComponent(btn_repVenta_salir)
                 .addGap(54, 54, 54))
         );
@@ -102,5 +148,7 @@ public class GUI_ReporteVentas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_repVenta_salir;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table_boletos;
     // End of variables declaration//GEN-END:variables
 }

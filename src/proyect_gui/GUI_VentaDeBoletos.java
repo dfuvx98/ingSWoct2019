@@ -411,19 +411,11 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
 
     private void btn_calcular_rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcular_rutaActionPerformed
         // TODO add your handling code here:
-        
-        int numBoletos = Integer.parseInt(txt_venta_numboleto.getText());
+       int numBoletos = Integer.parseInt(txt_venta_numboleto.getText());
         int costoRuta = Integer.parseInt(txt_venta_costo.getText());
-        double descuento = 0.30;
-        double total;
-        String tipo=txt_venta_edad.getText();
-        if(tipo.equals("especial")){
-           total = (numBoletos*costoRuta)-descuento;
-        }else{
-           total = (numBoletos*costoRuta);
-        }
-        
-        String str = Double.toString(total);
+        int descuento = Integer.parseInt(txt_venta_descuento.getText());
+        int total = (numBoletos*costoRuta)-descuento;
+        String str = Integer.toString(total);
         txt_venta_total.setText(str);
     }//GEN-LAST:event_btn_calcular_rutaActionPerformed
 

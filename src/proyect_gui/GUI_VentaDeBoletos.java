@@ -3,6 +3,7 @@ package proyect_gui;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import proyect_clases.Boleto;
 import proyect_clases.Pasajero;
 import proyect_clases.Rutas;
 import proyect_metodos.MetodoBoleto;
@@ -13,10 +14,10 @@ import proyect_metodos.MetodoRutas;
 public class GUI_VentaDeBoletos extends javax.swing.JFrame {
     MetodoPasajero buscarP = new MetodoPasajero ();
     MetodoRutas buscarR = new MetodoRutas ();
-    MetodoBoleto boleto = new MetodoBoleto();
+    MetodoBoleto metodoBoleto = new MetodoBoleto();
     Pasajero pasajero = new Pasajero();
     DefaultTableModel mdlTablaP;
-    
+    Boleto boleto =new Boleto();
     public GUI_VentaDeBoletos() {
         initComponents();
          
@@ -61,7 +62,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btn_ventas_nuevo = new javax.swing.JButton();
         btn_p_guardar = new javax.swing.JButton();
-        btn_p_eliminar = new javax.swing.JButton();
         btn_p_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,13 +309,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
             }
         });
 
-        btn_p_eliminar.setText("Editar");
-        btn_p_eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_p_eliminarActionPerformed(evt);
-            }
-        });
-
         btn_p_salir.setText("Salir");
         btn_p_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +324,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_p_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_p_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_p_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ventas_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -343,11 +335,9 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
                 .addComponent(btn_ventas_nuevo)
                 .addGap(18, 18, 18)
                 .addComponent(btn_p_guardar)
-                .addGap(29, 29, 29)
-                .addComponent(btn_p_eliminar)
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
                 .addComponent(btn_p_salir)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,28 +372,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_p_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_salirActionPerformed
-        // TODO add your handling code here:
-        GUI_Principal b = new GUI_Principal();
-        b.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btn_p_salirActionPerformed
-
-    private void btn_ventas_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ventas_nuevoActionPerformed
-        // Limpia los Jtext:
-        txt_venta_busca_cedula.setText("");
-        txt_venta_nombre.setText("");
-        txt_venta_apellido.setText("");
-        txt_venta_edad.setText("");
-        txt_venta_tipoPasajero.setText("");
-
-    }//GEN-LAST:event_btn_ventas_nuevoActionPerformed
-
-    private void btn_p_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_eliminarActionPerformed
-        // Boton eliminar pasajeros en tabla:
-      
-    }//GEN-LAST:event_btn_p_eliminarActionPerformed
-
     private void btn_buscarr_pasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarr_pasajeroActionPerformed
         Vector v = new Vector();
         String cedula = txt_venta_busca_cedula.getText();
@@ -413,29 +381,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         txt_venta_edad.setText((String) v.elementAt(2));
         txt_venta_tipoPasajero.setText((String) v.elementAt(4));
     }//GEN-LAST:event_btn_buscarr_pasajeroActionPerformed
-
-    private void btn_p_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_guardarActionPerformed
-        // TODO add your handling code here:
-        
-        String cedulaP_b = txt_venta_busca_cedula.getText();
-        String nombreP_b = txt_venta_nombre.getText();
-        String apellidoP_b = txt_venta_apellido.getText();
-        String edadP_b = txt_venta_edad.getText();
-        String tipoP_b = txt_venta_tipoPasajero.getText();
-        
-        String rutaR_b = txt_busca_ruta.getText();
-        String costoR_b = txt_venta_costo.getText();
-        String fechaR_b = txt_venta_fecha.getText();
-        String horaR_b = txt_venta_hora.getText();
-        
-        int numBoletosB = Integer.parseInt(txt_venta_numboleto.getText());
-        int descuentoB = Integer.parseInt(txt_venta_descuento.getText());
-        int totalB = Integer.parseInt(txt_venta_total.getText());
-            
-        // FALTA CREAR BOLETOS E GENERAR ARCHIVO TXT
-        //boleto.setNombre_pasajero(nombreP_b);
-        
-    }//GEN-LAST:event_btn_p_guardarActionPerformed
 
     private void txt_venta_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_venta_apellidoActionPerformed
         // TODO add your handling code here:
@@ -468,6 +413,64 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         String str = Integer.toString(total);
         txt_venta_total.setText(str);
     }//GEN-LAST:event_btn_calcular_rutaActionPerformed
+
+    private void btn_p_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_salirActionPerformed
+        // TODO add your handling code here:
+        GUI_Principal b = new GUI_Principal();
+        b.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_p_salirActionPerformed
+
+    private void btn_p_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_p_guardarActionPerformed
+        // TODO add your handling code here:
+
+        String cedulaP_b = txt_venta_busca_cedula.getText();
+        String nombreP_b = txt_venta_nombre.getText();
+        String apellidoP_b = txt_venta_apellido.getText();
+        String edadP_b = txt_venta_edad.getText();
+        String tipoP_b = txt_venta_tipoPasajero.getText();
+
+        String rutaR_b = txt_busca_ruta.getText();
+        String costoR_b = txt_venta_costo.getText();
+        String fechaR_b = txt_venta_fecha.getText();
+        String horaR_b = txt_venta_hora.getText();
+
+        int numBoletosB = Integer.parseInt(txt_venta_numboleto.getText());
+        int descuentoB = Integer.parseInt(txt_venta_descuento.getText());
+        int totalB = Integer.parseInt(txt_venta_total.getText());
+
+        boleto.setNumero_boleto(numBoletosB);
+        boleto.setCosto_boleto(totalB);
+        boleto.setFecha_boleto(fechaR_b);
+        boleto.setHora_boleto(horaR_b);
+        boleto.setCedula_pasajero(cedulaP_b);
+        boleto.setId_ruta(rutaR_b);
+
+        metodoBoleto.guardarBoleto(boleto);
+        metodoBoleto.guardarArchivoBoleto(boleto);
+
+        txt_venta_busca_cedula.setText("");
+        txt_venta_nombre.setText("");
+        txt_venta_apellido.setText("");
+        txt_venta_edad.setText("");
+        txt_venta_tipoPasajero.setText("");
+        txt_busca_ruta.setText("");
+        txt_venta_costo.setText("");
+        txt_venta_fecha.setText("");
+        txt_venta_hora.setText("");
+        txt_venta_numboleto.setText("");
+        txt_venta_descuento.setText("");
+        txt_venta_total.setText("");
+    }//GEN-LAST:event_btn_p_guardarActionPerformed
+
+    private void btn_ventas_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ventas_nuevoActionPerformed
+        // Limpia los Jtext:
+        txt_venta_busca_cedula.setText("");
+        txt_venta_nombre.setText("");
+        txt_venta_apellido.setText("");
+        txt_venta_edad.setText("");
+        txt_venta_tipoPasajero.setText("");
+    }//GEN-LAST:event_btn_ventas_nuevoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,7 +511,6 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
     private javax.swing.JButton btn_buscar_ruta;
     private javax.swing.JButton btn_buscarr_pasajero;
     private javax.swing.JButton btn_calcular_ruta;
-    private javax.swing.JButton btn_p_eliminar;
     private javax.swing.JButton btn_p_guardar;
     private javax.swing.JButton btn_p_salir;
     private javax.swing.JButton btn_ventas_nuevo;

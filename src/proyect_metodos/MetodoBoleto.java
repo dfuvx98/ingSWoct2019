@@ -29,8 +29,22 @@ public class MetodoBoleto {
     }
     
     //guardar archivo txt
-    public void guardarArchivoBoleto(Pasajero pasajero){
-        
+    public void guardarArchivoBoleto(Boleto boleto){
+        try {
+            FileWriter fw = new FileWriter(".\\boletos.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.print(boleto.getNumero_boleto());
+            pw.print("|" + boleto.getCedula_pasajero());
+            pw.print("|" + boleto.getId_ruta());
+            pw.print("|" + boleto.getCosto_boleto());
+            pw.print("|" + boleto.getFecha_boleto());
+            pw.print("|" + boleto.getHora_boleto());
+            bw.close();
+            pw.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
         //FALTA
         
     }
@@ -40,5 +54,32 @@ public class MetodoBoleto {
         //FALTA
         
     }
-    
+    public DefaultTableModel listaBoletos() {
+        Vector vCabeceras = new Vector();
+        vCabeceras.addElement("BOLETO");
+        vCabeceras.addElement("PASAJERO");
+        vCabeceras.addElement("RUTA");
+        vCabeceras.addElement("COSTO");
+        vCabeceras.addElement("FECHA");
+        vCabeceras.addElement("HORA");
+        DefaultTableModel mdlTablaB = new DefaultTableModel(vCabeceras, 0);
+        try {
+            FileReader fr = new FileReader(".\\boletos.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String d;
+            while ((d = br.readLine()) != null) {
+                StringTokenizer dato = new StringTokenizer(d, "|");
+                Vector x = new Vector();
+                while (dato.hasMoreTokens()) {
+                    x.addElement(dato.nextToken());
+                }
+                mdlTablaB.addRow(x);
+            }
+            br.close();
+            fr.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return mdlTablaB;
+    }
 }

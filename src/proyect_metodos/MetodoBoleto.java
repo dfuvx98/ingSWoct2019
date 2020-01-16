@@ -39,7 +39,7 @@ public class MetodoBoleto {
             pw.print("|" + boleto.getId_ruta());
             pw.print("|" + boleto.getCosto_boleto());
             pw.print("|" + boleto.getFecha_boleto());
-            pw.print("|" + boleto.getHora_boleto());
+            pw.println("|" + boleto.getHora_boleto());
             bw.close();
             pw.close();
         } catch (IOException e) {

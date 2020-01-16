@@ -5,17 +5,34 @@
  */
 package proyect_gui;
 
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import proyect_metodos.MetodoUsuario;
+
 /**
  *
  * @author HackWhite
  */
 public class GUI_ReporteAccesos extends javax.swing.JFrame {
 
+     Vector vCabeceras = new Vector();
+     Vector v = new Vector();
+     MetodoUsuario metodos = new MetodoUsuario ();
+     DefaultTableModel mdlTablaU;
     /**
      * Creates new form GUI_ReporteAccesos
      */
     public GUI_ReporteAccesos() {
         initComponents();
+        vCabeceras.addElement("ID");
+        vCabeceras.addElement("NOMBRE");
+        vCabeceras.addElement("APELLIDO");
+        vCabeceras.addElement("USER");
+        vCabeceras.addElement("PASSWORD");
+        mdlTablaU = new DefaultTableModel(vCabeceras,0);
+        table_usuario.setModel(mdlTablaU);
+        table_usuario.setModel(metodos.listaUsuario());
+
     }
 
     /**
@@ -28,6 +45,8 @@ public class GUI_ReporteAccesos extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_repAcc_salir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_usuario = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +57,27 @@ public class GUI_ReporteAccesos extends javax.swing.JFrame {
             }
         });
 
+        table_usuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "NOMBRE", "APELLIDO", "TIPO", "CEDULA", "EDAD"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_usuario);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -46,11 +86,17 @@ public class GUI_ReporteAccesos extends javax.swing.JFrame {
                 .addContainerGap(281, Short.MAX_VALUE)
                 .addComponent(btn_repAcc_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_repAcc_salir)
                 .addGap(54, 54, 54))
         );
@@ -102,5 +148,7 @@ public class GUI_ReporteAccesos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_repAcc_salir;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table_usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,8 +56,6 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        txt_r_nombre1 = new javax.swing.JTextField();
         txt_r_id1 = new javax.swing.JTextField();
         btn_r_nuevo = new javax.swing.JButton();
         btn_r_guardar = new javax.swing.JButton();
@@ -173,11 +171,9 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
         );
 
-        jLabel7.setText("BUSQUEDA DE LA RUTA:");
+        jLabel7.setText("ESCRIBA RUTA QUE DESEA EDITAR O BORRAR");
 
         jLabel8.setText("ID");
-
-        jLabel11.setText("Ruta");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -187,15 +183,10 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(txt_r_id1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(txt_r_nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8)
+                        .addComponent(txt_r_id1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,13 +194,9 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11))
+                .addComponent(jLabel8)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_r_id1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_r_nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_r_id1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -227,14 +214,14 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
             }
         });
 
-        btn_r_eliminar.setText("Editar");
+        btn_r_eliminar.setText("Eliminar");
         btn_r_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_r_eliminarActionPerformed(evt);
             }
         });
 
-        btn_r_actializar.setText("Eliminar");
+        btn_r_actializar.setText("Editar");
         btn_r_actializar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_r_actializarActionPerformed(evt);
@@ -257,7 +244,7 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
                     .addComponent(btn_r_actializar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_r_salir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_r_nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,11 +352,59 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
 
     private void btn_r_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_r_eliminarActionPerformed
         // Boton eliminar pasajeros en tabla:
+        String id = (txt_r_id1.getText());
+        metodosR.EliminarRutas(id);
+        table_rutas.setModel(metodosR.listaRutas());
     }//GEN-LAST:event_btn_r_eliminarActionPerformed
 
     private void btn_r_actializarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_r_actializarActionPerformed
         // Carga los datos del archivo de texto con la base de datos de pasajeros:
-        table_rutas.setModel(metodosR.listaRutas());
+         int bandera =1;
+        mdlTablaR = new DefaultTableModel();
+        int id_r=Integer.parseInt(txt_r_id1.getText());
+        String costo_r= "";
+        String fecha_r="";
+        if(metodos.EsNumero(txt_r_id.getText())){
+            id_r = Integer.parseInt(txt_r_id1.getText());
+            ruta.setId_Ruta(id_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese valores numérico para ID");
+            bandera=0;
+        }
+        String nombre_r = txt_r_nombre.getText();
+        String origen_r = txt_r_origen.getText();
+        String destino_r = txt_r_destino.getText();
+        if(metodos.EsNumero(txt_r_costo.getText())){
+             costo_r = txt_r_costo.getText();
+             ruta.setCosto_Ruta(costo_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese valor númerico de costo");
+            bandera=0;
+        }
+        if(metodos.EsHora(txt_r_hora.getText())){
+            String hora_r = txt_r_hora.getText();
+            ruta.setHora_Ruta(hora_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese hora correcta en formato HH:mm");
+            bandera=0;
+        }
+        if(metodos.EsFecha(txt_r_fecha.getText())){
+            fecha_r = txt_r_fecha.getText();    
+            ruta.setFecha_Ruta(fecha_r);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese fecha en formato DD/mm/yyyy");
+            bandera=0;
+        }        
+        ruta.setNombre_Ruta(nombre_r);
+        ruta.setOrigen_Ruta(origen_r);
+        ruta.setDestino_Ruta(destino_r);
+        
+        
+        if(bandera==1){
+            
+            metodosR.EditarRutas(ruta);
+            table_rutas.setModel(metodosR.listaRutas());
+        }
     }//GEN-LAST:event_btn_r_actializarActionPerformed
 
     /**
@@ -418,7 +453,6 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
     private javax.swing.JButton btn_r_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -438,7 +472,6 @@ public class GUI_RegistroRutas extends javax.swing.JFrame {
     private javax.swing.JTextField txt_r_id;
     private javax.swing.JTextField txt_r_id1;
     private javax.swing.JTextField txt_r_nombre;
-    private javax.swing.JTextField txt_r_nombre1;
     private javax.swing.JTextField txt_r_origen;
     // End of variables declaration//GEN-END:variables
 }

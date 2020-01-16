@@ -5,11 +5,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyect_metodos.Metodos;
 import proyect_clases.Pasajero;
+import proyect_metodos.MetodoPasajero;
 
 public class RegistroDePasajero extends javax.swing.JFrame {
 
     Pasajero pasajero = new Pasajero();
-    Metodos metodos = new Metodos();
+    MetodoPasajero metodos = new MetodoPasajero();
     DefaultTableModel mdlTabla;
     Vector vCabeceras = new Vector();
     
@@ -238,8 +239,8 @@ public class RegistroDePasajero extends javax.swing.JFrame {
         pasajero.setCedula_pasajero(cedula_p);
         pasajero.setEdad_pasajero(edad_p);
         
-        metodos.guardar(pasajero);
-        metodos.guardarArchivo(pasajero);
+        metodos.guardarPasajero(pasajero);
+        metodos.guardarArchivoPasajero(pasajero);
                 
     }//GEN-LAST:event_btn_p_guardarActionPerformed
 

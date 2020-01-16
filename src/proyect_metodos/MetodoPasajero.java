@@ -37,32 +37,33 @@ public class MetodoPasajero {
     }
     
     //mostrar los datos en el jtable
-    public DefaultTableModel listaPasajero(){
+  public DefaultTableModel listaPasajero() {
         Vector cabeceras = new Vector();
         cabeceras.addElement("NOMBRE");
         cabeceras.addElement("APELLIDO");
         cabeceras.addElement("CATEGORIA");
         cabeceras.addElement("CEDULA");
         cabeceras.addElement("EDAD");
-        
+
         //Crear vector con nombre apellido pasajero cedula edad
-        DefaultTableModel mdlTablaP = new DefaultTableModel(cabeceras,0);
+        DefaultTableModel mdlTablaP = new DefaultTableModel(cabeceras, 0);
         try {
-     
+
             FileReader fr = new FileReader(".\\Pasajero.txt");
             BufferedReader br = new BufferedReader(fr);
             String d;
 
-            while ((d=br.readLine())!=null){
-                StringTokenizer dato = new StringTokenizer (d,"|");
+            while ((d = br.readLine()) != null) {
+                StringTokenizer dato = new StringTokenizer(d, "|");
                 Vector x = new Vector();
-                while (dato.hasMoreTokens()){
+                while (dato.hasMoreTokens()) {
                     x.addElement(dato.nextToken());
                 }
                 mdlTablaP.addRow(x);
             }
-        }catch (Exception e){
-        JOptionPane.showMessageDialog(null, "Archivo no encontrado");
+            br.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
         }
         return mdlTablaP;
     }
@@ -207,4 +208,5 @@ public class MetodoPasajero {
         return vPrincipal;
 
     }
+    
 }

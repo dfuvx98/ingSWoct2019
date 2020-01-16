@@ -77,6 +77,12 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
             }
         });
 
+        txt_venta_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_venta_edadActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Nombre Pasajero:");
 
         jLabel2.setText("Apellido Pasajero:");
@@ -408,9 +414,16 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         
         int numBoletos = Integer.parseInt(txt_venta_numboleto.getText());
         int costoRuta = Integer.parseInt(txt_venta_costo.getText());
-        int descuento = Integer.parseInt(txt_venta_descuento.getText());
-        int total = (numBoletos*costoRuta)-descuento;
-        String str = Integer.toString(total);
+        double descuento = 0.30;
+        double total;
+        String tipo=txt_venta_edad.getText();
+        if(tipo.equals("especial")){
+           total = (numBoletos*costoRuta)-descuento;
+        }else{
+           total = (numBoletos*costoRuta);
+        }
+        
+        String str = Double.toString(total);
         txt_venta_total.setText(str);
     }//GEN-LAST:event_btn_calcular_rutaActionPerformed
 
@@ -471,6 +484,10 @@ public class GUI_VentaDeBoletos extends javax.swing.JFrame {
         txt_venta_edad.setText("");
         txt_venta_tipoPasajero.setText("");
     }//GEN-LAST:event_btn_ventas_nuevoActionPerformed
+
+    private void txt_venta_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_venta_edadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_venta_edadActionPerformed
 
     /**
      * @param args the command line arguments

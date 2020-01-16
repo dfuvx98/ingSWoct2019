@@ -158,6 +158,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_venta_edad">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_venta_edadActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_venta_tipoPasajero">
         </Component>
